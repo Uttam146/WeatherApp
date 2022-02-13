@@ -2,6 +2,7 @@ const http = require('http');
 const fs = require('fs');
 var requests = require('requests');
 const homefile = fs.readFileSync("home.html","utf-8");
+const port = process.env.PORT || 3000
 
 const replaceval = (tempVal, orgVal) =>{
     let temperature = tempVal.replace("{%tempval%}",orgVal.main.temp);
@@ -28,4 +29,6 @@ const server = http.createServer((req,res) =>{
         });
     }
 })
-server.listen(3000,'127.0.0.1');
+server.listen(port,()=>{
+console.log(`listening at port ${port}`);
+});
